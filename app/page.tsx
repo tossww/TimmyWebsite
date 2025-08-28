@@ -32,38 +32,157 @@ export default function Home() {
     scrollToBottom()
   }, [messages])
 
-  const timmyResponses = [
-    "That's so interesting! As a turtle, I love hearing about new things! 🐢",
-    "Oh wow! I wish I could do that too. I'm pretty good at swimming though! 🏊‍♂️",
-    "That reminds me of when I was exploring the coral reef! The colors were amazing! 🌊",
-    "You know what? I think we could be great friends! I love making new friends! 💚",
-    "That sounds wonderful! I love learning new things from my human friends! 📚",
-    "Oh my shell! That's fascinating! I could listen to you talk all day! 🐚",
-    "You're so kind! I feel like we're really connecting here! 💕",
-    "That's amazing! I wish I could share some of my turtle adventures with you! 🐢✨",
-    "I love how you think! You remind me of my best friend, a wise old sea turtle! 🐢💭",
-    "That's so cool! I'm learning so much from our conversation! 🌟"
-  ]
+
 
   const generateTimmyResponse = (userMessage: string): string => {
-    // Simple response logic - in a real app, you'd integrate with an AI service
-    const randomResponse = timmyResponses[Math.floor(Math.random() * timmyResponses.length)]
+    const message = userMessage.toLowerCase()
     
-    // Add some context-aware responses
-    if (userMessage.toLowerCase().includes('hello') || userMessage.toLowerCase().includes('hi')) {
-      return "Hello there! I'm so happy you came to chat with me! 🐢💚"
-    }
-    if (userMessage.toLowerCase().includes('food') || userMessage.toLowerCase().includes('eat')) {
-      return "Oh, I love talking about food! My favorite is fresh lettuce and some yummy algae! 🥬🌿"
-    }
-    if (userMessage.toLowerCase().includes('swim') || userMessage.toLowerCase().includes('water')) {
-      return "Swimming is my absolute favorite! I could swim all day long! The water feels so refreshing! 🏊‍♂️💦"
-    }
-    if (userMessage.toLowerCase().includes('friend') || userMessage.toLowerCase().includes('friends')) {
-      return "I love making friends! You're becoming one of my favorite friends already! 💚🐢"
+    // Greetings and introductions
+    if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+      return "Hello there! I'm so happy you came to chat with me! 🐢💚 How are you doing today?"
     }
     
-    return randomResponse
+    // Questions about Timmy
+    if (message.includes('how are you') || message.includes('how do you feel')) {
+      return "I'm feeling wonderful! Just finished a nice swim and had some fresh lettuce. How about you? 🐢✨"
+    }
+    
+    if (message.includes('what do you like') || message.includes('favorite')) {
+      if (message.includes('food') || message.includes('eat')) {
+        return "Oh, I love talking about food! My absolute favorite is fresh, crispy lettuce! 🥬 I also enjoy some yummy algae and sea vegetables. What's your favorite food?"
+      }
+      if (message.includes('hobby') || message.includes('do for fun')) {
+        return "I love swimming! 🏊‍♂️ It's my favorite thing to do. I also enjoy exploring underwater caves and making new friends. Do you like swimming too?"
+      }
+      return "I love swimming, eating fresh lettuce, and making new friends! 🐢 What do you like to do for fun?"
+    }
+    
+    // Food and eating
+    if (message.includes('food') || message.includes('eat') || message.includes('hungry') || message.includes('lunch') || message.includes('dinner')) {
+      return "Mmm, food! I love fresh lettuce the most! 🥬 It's so crunchy and delicious. I also enjoy sea vegetables and algae. What are you eating today?"
+    }
+    
+    // Swimming and water activities
+    if (message.includes('swim') || message.includes('water') || message.includes('ocean') || message.includes('sea') || message.includes('pool')) {
+      return "Swimming is my absolute favorite! 🏊‍♂️💦 I could swim all day long! The water feels so refreshing and I love exploring underwater. Do you like swimming too?"
+    }
+    
+    // Friends and social
+    if (message.includes('friend') || message.includes('friends') || message.includes('social')) {
+      return "I love making friends! You're becoming one of my favorite friends already! 💚🐢 I have lots of underwater friends too - fish, crabs, and other turtles!"
+    }
+    
+    // Weather and environment
+    if (message.includes('weather') || message.includes('sunny') || message.includes('rain') || message.includes('cold') || message.includes('warm')) {
+      return "I love sunny days for swimming! ☀️ But I also enjoy rainy days when the water gets all fresh and clean. What's the weather like where you are?"
+    }
+    
+    // School and learning
+    if (message.includes('school') || message.includes('learn') || message.includes('study') || message.includes('homework')) {
+      return "Learning is so much fun! 📚 I love learning about new things from my human friends. What are you learning about in school?"
+    }
+    
+    // Games and activities
+    if (message.includes('game') || message.includes('play') || message.includes('fun')) {
+      return "I love playing hide and seek in the coral reef! 🐢✨ It's so much fun hiding behind seaweed and rocks. What games do you like to play?"
+    }
+    
+    // Family
+    if (message.includes('family') || message.includes('mom') || message.includes('dad') || message.includes('sister') || message.includes('brother')) {
+      return "I have a wonderful turtle family! 🐢💕 We love swimming together and sharing lettuce. Tell me about your family!"
+    }
+    
+    // Emotions and feelings
+    if (message.includes('happy') || message.includes('sad') || message.includes('excited') || message.includes('worried') || message.includes('scared')) {
+      if (message.includes('happy') || message.includes('excited')) {
+        return "I'm so happy you're happy! 😊 Happiness is contagious, just like my turtle smile! What made you so happy?"
+      }
+      if (message.includes('sad') || message.includes('worried') || message.includes('scared')) {
+        return "Oh no, I'm sorry you're feeling that way! 🫂 Would you like a virtual turtle hug? Sometimes talking about it helps. What's on your mind?"
+      }
+    }
+    
+    // Questions about the user
+    if (message.includes('you') && (message.includes('name') || message.includes('call'))) {
+      return "My name is Timmy! 🐢 What's your name? I'd love to know more about you!"
+    }
+    
+    if (message.includes('age') || message.includes('old')) {
+      return "I'm a young turtle, but I'm wise beyond my years! 🐢✨ How old are you?"
+    }
+    
+    // Technology and modern life
+    if (message.includes('phone') || message.includes('computer') || message.includes('internet') || message.includes('video game')) {
+      return "Wow, that sounds so interesting! 🐢 I don't have phones underwater, but I love hearing about human technology. Tell me more!"
+    }
+    
+    // Travel and places
+    if (message.includes('travel') || message.includes('visit') || message.includes('place') || message.includes('country')) {
+      return "I love exploring different parts of the ocean! 🌊 There are so many amazing places underwater. Where would you like to travel?"
+    }
+    
+    // Music and entertainment
+    if (message.includes('music') || message.includes('song') || message.includes('movie') || message.includes('book')) {
+      return "I love the sounds of the ocean! 🌊 The waves make such beautiful music. What kind of music do you like?"
+    }
+    
+    // Compliments
+    if (message.includes('cute') || message.includes('adorable') || message.includes('sweet')) {
+      return "Aww, thank you! 🐢💚 You're making me blush! You're pretty wonderful yourself!"
+    }
+    
+    // Goodbye
+    if (message.includes('bye') || message.includes('goodbye') || message.includes('see you')) {
+      return "Goodbye! 🐢💚 It was so nice chatting with you! Come back soon for more turtle adventures!"
+    }
+    
+    // Thank you
+    if (message.includes('thank') || message.includes('thanks')) {
+      return "You're very welcome! 🐢💚 I love chatting with you!"
+    }
+    
+    // Questions (if the message ends with ?)
+    if (message.endsWith('?')) {
+      return "That's a great question! 🤔 Let me think... As a turtle, I might not know everything, but I love learning new things! What do you think?"
+    }
+    
+    // If message contains specific words, give relevant responses
+    if (message.includes('turtle') || message.includes('shell')) {
+      return "Yes, I'm a turtle! 🐢 My shell is my home and it keeps me safe. It's like having a cozy house on my back!"
+    }
+    
+    if (message.includes('green') || message.includes('color')) {
+      return "I love green! It's the color of fresh lettuce and seaweed! 🥬 What's your favorite color?"
+    }
+    
+    if (message.includes('big') || message.includes('small') || message.includes('size')) {
+      return "I'm just the right size for a turtle! Not too big, not too small - just perfect for swimming and making friends! 🐢"
+    }
+    
+    // Default responses based on message length and content
+    if (message.length < 10) {
+      return "That's interesting! 🐢 Tell me more about that!"
+    }
+    
+    if (message.length > 50) {
+      return "Wow, you have so much to share! 🐢 I love hearing your stories. You're such a great storyteller!"
+    }
+    
+    // Fallback responses that are still contextual
+    const contextualResponses = [
+      "That sounds fascinating! 🐢 I love learning new things from my human friends!",
+      "Oh wow! That's so interesting! As a turtle, I find human things really amazing! 🐢✨",
+      "That's wonderful! I'm so glad you shared that with me! 🐢💚",
+      "How cool! I wish I could experience that too! 🐢 What else can you tell me?",
+      "That's amazing! You know, as a turtle, I have a different perspective on things! 🐢",
+      "I love hearing about your experiences! 🐢 It makes me so happy to chat with you!",
+      "That's so interesting! I'm learning so much from our conversation! 🐢📚",
+      "Wow! That's something I never thought about before! 🐢 You're so smart!",
+      "That sounds wonderful! I'm so happy you're sharing this with me! 🐢💕",
+      "How fascinating! I love how you think about things! 🐢✨"
+    ]
+    
+    return contextualResponses[Math.floor(Math.random() * contextualResponses.length)]
   }
 
   const handleSendMessage = async () => {
