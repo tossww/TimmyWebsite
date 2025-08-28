@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Send, MessageCircle, Heart, Shell } from 'lucide-react'
+import Image from 'next/image'
 
 interface Message {
   id: string
@@ -100,155 +101,153 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-100 via-green-100 to-blue-50">
+      {/* Compact Header */}
       <header className="bg-gradient-to-r from-green-400 to-blue-500 shadow-lg">
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="flex items-center justify-center space-x-6">
-            <div className="text-6xl animate-bounce-slow">🐢</div>
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-center space-x-3">
+            <div className="text-3xl animate-bounce-slow">🐢</div>
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-white mb-2">Timmy the Turtle</h1>
-              <p className="text-white/90 text-lg">Official Jelly Cat Companion</p>
-              <div className="mt-2 text-white/80 text-sm">
-                <span className="bg-white/20 px-3 py-1 rounded-full">From Jelly Cat</span>
-              </div>
+              <h1 className="text-2xl md:text-3xl font-bold text-white">Timmy the Turtle</h1>
+              <p className="text-white/90 text-sm md:text-base">Official Jelly Cat Companion</p>
             </div>
-            <div className="text-6xl animate-bounce-slow">🐢</div>
+            <div className="text-3xl animate-bounce-slow">🐢</div>
           </div>
         </div>
       </header>
 
-      {/* Main Chat Area */}
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-8">
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl h-[600px] flex flex-col">
-          {/* Chat Messages */}
-          <div className="flex-1 overflow-y-auto p-6 chat-scrollbar">
-            <div className="space-y-4">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
-                      message.isUser
-                        ? 'bg-ocean-blue text-white rounded-br-md'
-                        : 'bg-turtle-green text-white rounded-bl-md'
-                    }`}
-                  >
-                    <p className="text-sm">{message.text}</p>
-                    <p className="text-xs opacity-70 mt-1">
-                      {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </p>
-                  </div>
+      {/* Main Content - Mobile Optimized */}
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-4">
+        <div className="grid md:grid-cols-2 gap-4 h-full">
+          {/* Timmy Image Section */}
+          <div className="order-2 md:order-1 flex flex-col items-center justify-center">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-sm">
+              <div className="relative w-48 h-48 mx-auto mb-4">
+                <div className="w-full h-full bg-gradient-to-br from-green-200 to-blue-200 rounded-full flex items-center justify-center text-6xl">
+                  🐢
                 </div>
-              ))}
-              
-              {isTyping && (
-                <div className="flex justify-start">
-                  <div className="bg-gray-200 text-gray-700 px-4 py-3 rounded-2xl rounded-bl-md">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    </div>
-                  </div>
+                <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                  Official
                 </div>
-              )}
+              </div>
+              <div className="text-center">
+                <h2 className="text-xl font-bold text-gray-800 mb-2">Timmy Turtle "Skating"</h2>
+                <p className="text-gray-600 text-sm mb-3">From Jelly Cat Collection</p>
+                <div className="flex justify-center space-x-2 text-sm text-gray-500">
+                  <span>🥬 Loves lettuce</span>
+                  <span>🌊 Loves swimming</span>
+                </div>
+              </div>
             </div>
-            <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
-          <div className="border-t border-gray-200 p-4">
-            <div className="flex space-x-3">
-              <div className="flex-1 relative">
-                <textarea
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder="Type your message to Timmy..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-turtle-green focus:border-transparent resize-none bg-white text-gray-900 placeholder-gray-500"
-                  rows={1}
-                  style={{ minHeight: '48px', maxHeight: '120px' }}
-                />
+          {/* Chat Section */}
+          <div className="order-1 md:order-2 flex flex-col h-[500px] md:h-[600px]">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl flex flex-col h-full">
+              {/* Chat Messages */}
+              <div className="flex-1 overflow-y-auto p-4 chat-scrollbar">
+                <div className="space-y-3">
+                  {messages.map((message) => (
+                    <div
+                      key={message.id}
+                      className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div
+                        className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm ${
+                          message.isUser
+                            ? 'bg-ocean-blue text-white rounded-br-md'
+                            : 'bg-turtle-green text-white rounded-bl-md'
+                        }`}
+                      >
+                        <p>{message.text}</p>
+                        <p className="text-xs opacity-70 mt-1">
+                          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {isTyping && (
+                    <div className="flex justify-start">
+                      <div className="bg-gray-200 text-gray-700 px-3 py-2 rounded-2xl rounded-bl-md">
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div ref={messagesEndRef} />
               </div>
-              <button
-                onClick={handleSendMessage}
-                disabled={!inputText.trim() || isTyping}
-                className="bg-turtle-green hover:bg-turtle-dark disabled:bg-gray-300 text-white px-6 py-3 rounded-xl transition-colors duration-200 flex items-center space-x-2"
-              >
-                <Send size={20} />
-              </button>
+
+              {/* Input Area */}
+              <div className="border-t border-gray-200 p-3">
+                <div className="flex space-x-2">
+                  <div className="flex-1 relative">
+                    <textarea
+                      value={inputText}
+                      onChange={(e) => setInputText(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      placeholder="Chat with Timmy..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-turtle-green focus:border-transparent resize-none bg-white text-gray-900 placeholder-gray-500 text-sm"
+                      rows={1}
+                      style={{ minHeight: '40px', maxHeight: '100px' }}
+                    />
+                  </div>
+                  <button
+                    onClick={handleSendMessage}
+                    disabled={!inputText.trim() || isTyping}
+                    className="bg-turtle-green hover:bg-turtle-dark disabled:bg-gray-300 text-white px-4 py-2 rounded-xl transition-colors duration-200 flex items-center"
+                  >
+                    <Send size={16} />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* About Timmy Section */}
-        <div className="mt-8 bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-          <h2 className="text-2xl font-bold text-turtle-dark mb-4 flex items-center">
-            <Shell className="mr-2" />
-            About Timmy the Turtle
+        {/* Compact About Section */}
+        <div className="mt-4 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+          <h2 className="text-lg font-bold text-turtle-dark mb-3 flex items-center">
+            <Shell className="mr-2" size={20} />
+            About Timmy
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <Heart className="text-red-500 mt-1 flex-shrink-0" size={18} />
-                <div>
-                  <h3 className="font-semibold text-gray-800">Official Jelly Cat Product</h3>
-                  <p className="text-gray-600 text-sm">Timmy is a beloved character from the Jelly Cat collection</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <MessageCircle className="text-blue-500 mt-1 flex-shrink-0" size={18} />
-                <div>
-                  <h3 className="font-semibold text-gray-800">Friendly & Interactive</h3>
-                  <p className="text-gray-600 text-sm">Always ready to chat and make new friends!</p>
-                </div>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            <div className="flex items-center space-x-2">
+              <Heart className="text-red-500" size={14} />
+              <span className="text-gray-700">Official Jelly Cat</span>
             </div>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="text-green-500 mt-1 flex-shrink-0 text-xl">🌊</div>
-                <div>
-                  <h3 className="font-semibold text-gray-800">Ocean Adventures</h3>
-                  <p className="text-gray-600 text-sm">Loves swimming and exploring underwater worlds</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="text-yellow-500 mt-1 flex-shrink-0 text-xl">🥬</div>
-                <div>
-                  <h3 className="font-semibold text-gray-800">Healthy Diet</h3>
-                  <p className="text-gray-600 text-sm">Enjoys fresh lettuce and sea vegetables</p>
-                </div>
-              </div>
+            <div className="flex items-center space-x-2">
+              <MessageCircle className="text-blue-500" size={14} />
+              <span className="text-gray-700">Friendly & Chatty</span>
             </div>
-          </div>
-          
-          {/* Jelly Cat Branding */}
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <div className="flex items-center justify-center space-x-2 text-gray-500">
-              <span className="text-sm">Official Jelly Cat Character</span>
-              <span>•</span>
-              <span className="text-sm">Made with love</span>
+            <div className="flex items-center space-x-2">
+              <span className="text-green-500">🌊</span>
+              <span className="text-gray-700">Loves Swimming</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <span className="text-yellow-500">🥬</span>
+              <span className="text-gray-700">Loves Lettuce</span>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-green-400 to-blue-500 mt-8">
-        <div className="max-w-4xl mx-auto px-4 py-6 text-center text-white">
-          <p className="font-semibold">Timmy the Turtle - Official Jelly Cat Character</p>
-          <p className="text-sm mt-2 opacity-90">Made with 💚 for the Jelly Cat community</p>
-          <div className="mt-3">
+      {/* Compact Footer */}
+      <footer className="bg-gradient-to-r from-green-400 to-blue-500 mt-4">
+        <div className="max-w-4xl mx-auto px-4 py-4 text-center text-white">
+          <p className="font-semibold text-sm">Timmy the Turtle - Official Jelly Cat Character</p>
+          <div className="mt-2">
             <a 
               href="https://www.jellycat.com/us/timmy-turtle-1/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-sm transition-colors duration-200"
+              className="inline-block bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-xs transition-colors duration-200"
             >
-              Visit Jelly Cat Official Site
+              Visit Jelly Cat
             </a>
           </div>
         </div>
