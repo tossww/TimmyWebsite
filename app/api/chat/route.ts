@@ -26,20 +26,30 @@ async function generateAIResponse(userMessage: string): Promise<string> {
   const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY
   
+  console.log('API Keys detected:', {
+    openai: OPENAI_API_KEY ? 'Present' : 'Missing',
+    anthropic: ANTHROPIC_API_KEY ? 'Present' : 'Missing',
+    gemini: GEMINI_API_KEY ? 'Present' : 'Missing'
+  })
+  
   try {
     // Priority order: OpenAI > Claude > Gemini > Fallback
     if (OPENAI_API_KEY) {
+      console.log('Using OpenAI API...')
       return await generateOpenAIResponse(userMessage)
     }
     
     if (ANTHROPIC_API_KEY) {
+      console.log('Using Claude API...')
       return await generateClaudeResponse(userMessage)
     }
     
     if (GEMINI_API_KEY) {
+      console.log('Using Gemini API...')
       return await generateGeminiResponse(userMessage)
     }
     
+    console.log('No API keys found, using fallback...')
     // Fallback to enhanced responses if no API keys
     return generateEnhancedFallbackResponse(userMessage)
   } catch (error) {
@@ -56,6 +66,8 @@ async function generateOpenAIResponse(userMessage: string): Promise<string> {
     throw new Error('OpenAI API key not configured')
   }
 
+  console.log('Making OpenAI API request...')
+  
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -80,6 +92,18 @@ async function generateOpenAIResponse(userMessage: string): Promise<string> {
   })
 
   const data = await response.json()
+  
+  console.log('OpenAI response status:', response.status)
+  console.log('OpenAI response data:', data)
+  
+  if (!response.ok) {
+    throw new Error(`OpenAI API error: ${response.status} - ${JSON.stringify(data)}`)
+  }
+  
+  if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+    throw new Error('Invalid OpenAI response format')
+  }
+  
   return data.choices[0].message.content
 }
 
