@@ -199,8 +199,33 @@ export default function Home() {
     setInputText('')
     setIsTyping(true)
 
-    // Simulate Timmy typing
-    setTimeout(() => {
+    try {
+      // Call the real AI API
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: inputText }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to get AI response')
+      }
+
+      const data = await response.json()
+      
+      const timmyResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        text: data.response,
+        isUser: false,
+        timestamp: new Date()
+      }
+      
+      setMessages(prev => [...prev, timmyResponse])
+    } catch (error) {
+      console.error('AI API error:', error)
+      // Fallback to local response if AI fails
       const timmyResponse: Message = {
         id: (Date.now() + 1).toString(),
         text: generateTimmyResponse(inputText),
@@ -208,8 +233,9 @@ export default function Home() {
         timestamp: new Date()
       }
       setMessages(prev => [...prev, timmyResponse])
+    } finally {
       setIsTyping(false)
-    }, 1000 + Math.random() * 2000) // Random delay between 1-3 seconds
+    }
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

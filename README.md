@@ -24,6 +24,7 @@ A delightful interactive website dedicated to Timmy the turtle from Jelly Cat, f
 
 - Node.js 18+ 
 - npm or yarn
+- AI API key (optional - see AI Setup below)
 
 ### Installation
 
@@ -38,12 +39,40 @@ cd TimmyWebsite
 npm install
 ```
 
-3. Run the development server:
+3. Set up AI integration (optional):
+```bash
+cp env.example .env.local
+# Edit .env.local and add your AI API key
+```
+
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### AI Setup
+
+The website uses real AI to generate Timmy's responses. You can choose from several AI providers:
+
+#### Option 1: OpenAI (Recommended)
+1. Get an API key from [OpenAI](https://platform.openai.com/api-keys)
+2. Add to `.env.local`: `OPENAI_API_KEY=your_key_here`
+3. Uncomment the OpenAI function in `app/api/chat/route.ts`
+
+#### Option 2: Anthropic Claude
+1. Get an API key from [Anthropic](https://console.anthropic.com/)
+2. Add to `.env.local`: `ANTHROPIC_API_KEY=your_key_here`
+3. Uncomment the Claude function in `app/api/chat/route.ts`
+
+#### Option 3: Google Gemini
+1. Get an API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Add to `.env.local`: `GEMINI_API_KEY=your_key_here`
+3. Uncomment the Gemini function in `app/api/chat/route.ts`
+
+#### Option 4: No API Key
+If no API key is provided, the app will use enhanced fallback responses that are still intelligent and contextual.
 
 ## Development
 
