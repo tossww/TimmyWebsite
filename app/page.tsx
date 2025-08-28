@@ -102,15 +102,18 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-sm shadow-lg">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="text-4xl animate-bounce-slow">🐢</div>
-            <div>
-              <h1 className="text-3xl font-bold text-turtle-dark">Timmy the Turtle</h1>
-              <p className="text-gray-600">Your friendly Jelly Cat companion</p>
+      <header className="bg-gradient-to-r from-green-400 to-blue-500 shadow-lg">
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="flex items-center justify-center space-x-6">
+            <div className="text-6xl animate-bounce-slow">🐢</div>
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-white mb-2">Timmy the Turtle</h1>
+              <p className="text-white/90 text-lg">Official Jelly Cat Companion</p>
+              <div className="mt-2 text-white/80 text-sm">
+                <span className="bg-white/20 px-3 py-1 rounded-full">From Jelly Cat</span>
+              </div>
             </div>
-            <div className="text-4xl animate-bounce-slow">🐢</div>
+            <div className="text-6xl animate-bounce-slow">🐢</div>
           </div>
         </div>
       </header>
@@ -181,38 +184,73 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Fun Facts Section */}
+        {/* About Timmy Section */}
         <div className="mt-8 bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
           <h2 className="text-2xl font-bold text-turtle-dark mb-4 flex items-center">
             <Shell className="mr-2" />
-            Fun Facts About Timmy
+            About Timmy the Turtle
           </h2>
-          <div className="grid md:grid-cols-2 gap-4 text-gray-700">
-            <div className="flex items-start space-x-2">
-              <Heart className="text-red-500 mt-1 flex-shrink-0" size={16} />
-              <p>Timmy loves making new friends and learning about different cultures!</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <Heart className="text-red-500 mt-1 flex-shrink-0" size={18} />
+                <div>
+                  <h3 className="font-semibold text-gray-800">Official Jelly Cat Product</h3>
+                  <p className="text-gray-600 text-sm">Timmy is a beloved character from the Jelly Cat collection</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <MessageCircle className="text-blue-500 mt-1 flex-shrink-0" size={18} />
+                <div>
+                  <h3 className="font-semibold text-gray-800">Friendly & Interactive</h3>
+                  <p className="text-gray-600 text-sm">Always ready to chat and make new friends!</p>
+                </div>
+              </div>
             </div>
-            <div className="flex items-start space-x-2">
-              <MessageCircle className="text-blue-500 mt-1 flex-shrink-0" size={16} />
-              <p>He's a great listener and always has encouraging words to share!</p>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="text-green-500 mt-1 flex-shrink-0 text-xl">🌊</div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">Ocean Adventures</h3>
+                  <p className="text-gray-600 text-sm">Loves swimming and exploring underwater worlds</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="text-yellow-500 mt-1 flex-shrink-0 text-xl">🥬</div>
+                <div>
+                  <h3 className="font-semibold text-gray-800">Healthy Diet</h3>
+                  <p className="text-gray-600 text-sm">Enjoys fresh lettuce and sea vegetables</p>
+                </div>
+              </div>
             </div>
-            <div className="flex items-start space-x-2">
-              <div className="text-green-500 mt-1 flex-shrink-0">🌊</div>
-              <p>Timmy's favorite hobby is swimming and exploring underwater caves!</p>
-            </div>
-            <div className="flex items-start space-x-2">
-              <div className="text-yellow-500 mt-1 flex-shrink-0">🥬</div>
-              <p>He enjoys healthy snacks like fresh lettuce and sea vegetables!</p>
+          </div>
+          
+          {/* Jelly Cat Branding */}
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-center space-x-2 text-gray-500">
+              <span className="text-sm">Official Jelly Cat Character</span>
+              <span>•</span>
+              <span className="text-sm">Made with love</span>
             </div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-white/90 backdrop-blur-sm mt-8">
-        <div className="max-w-4xl mx-auto px-4 py-6 text-center text-gray-600">
-          <p>Made with 💚 for Timmy the Turtle from Jelly Cat</p>
-          <p className="text-sm mt-2">Ready to deploy on Vercel! 🚀</p>
+      <footer className="bg-gradient-to-r from-green-400 to-blue-500 mt-8">
+        <div className="max-w-4xl mx-auto px-4 py-6 text-center text-white">
+          <p className="font-semibold">Timmy the Turtle - Official Jelly Cat Character</p>
+          <p className="text-sm mt-2 opacity-90">Made with 💚 for the Jelly Cat community</p>
+          <div className="mt-3">
+            <a 
+              href="https://www.jellycat.com/us/timmy-turtle-1/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-sm transition-colors duration-200"
+            >
+              Visit Jelly Cat Official Site
+            </a>
+          </div>
         </div>
       </footer>
     </div>

@@ -5,9 +5,9 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Timmy the Turtle - Chat with Timmy',
-  description: 'Chat with Timmy the turtle from Jelly Cat! A friendly and interactive turtle companion.',
-  keywords: 'Timmy, turtle, Jelly Cat, chat, interactive, pet',
+  title: 'Timmy the Turtle - Official Jelly Cat Chat',
+  description: 'Chat with Timmy the turtle, the official Jelly Cat character! A friendly and interactive turtle companion from the beloved Jelly Cat collection.',
+  keywords: 'Timmy, turtle, Jelly Cat, official, chat, interactive, plush, character',
 }
 
 export default function RootLayout({
