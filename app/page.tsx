@@ -268,9 +268,14 @@ export default function Home() {
           <div className="order-2 md:order-1 flex flex-col items-center justify-center">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-sm">
               <div className="relative w-48 h-48 mx-auto mb-4">
-                <div className="w-full h-full bg-gradient-to-br from-green-200 to-blue-200 rounded-full flex items-center justify-center text-6xl">
-                  🐢
-                </div>
+                <Image
+                  src="/images/timmy-turtle-skating.jpg"
+                  alt="Timmy the Turtle - Official Jelly Cat Companion"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-cover rounded-full"
+                  priority
+                />
                 <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
                   Official
                 </div>
