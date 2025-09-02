@@ -251,12 +251,30 @@ export default function Home() {
       <header className="bg-gradient-to-r from-green-400 to-blue-500 shadow-lg">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-center space-x-3">
-            <div className="text-3xl animate-bounce-slow">🐢</div>
+            <div className="w-12 h-12 relative">
+              <Image
+                src="/timmy-turtle.png"
+                alt="Timmy the Turtle"
+                width={48}
+                height={48}
+                className="w-full h-full object-cover rounded-full animate-bounce-slow"
+                priority
+              />
+            </div>
             <div className="text-center">
               <h1 className="text-2xl md:text-3xl font-bold text-white">Timmy the Turtle</h1>
               <p className="text-white/90 text-sm md:text-base">Official Jelly Cat Companion</p>
             </div>
-            <div className="text-3xl animate-bounce-slow">🐢</div>
+            <div className="w-12 h-12 relative">
+              <Image
+                src="/timmy-turtle.png"
+                alt="Timmy the Turtle"
+                width={48}
+                height={48}
+                className="w-full h-full object-cover rounded-full animate-bounce-slow"
+                priority
+              />
+            </div>
           </div>
         </div>
       </header>
@@ -266,10 +284,10 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-4 h-full">
           {/* Timmy Image Section */}
           <div className="order-2 md:order-1 flex flex-col items-center justify-center">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-sm">
+            <div className="bg-transparent backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-sm">
               <div className="relative w-48 h-48 mx-auto mb-4">
                 <Image
-                  src="/images/timmy-turtle-skating.jpg"
+                  src="/timmy-turtle.png"
                   alt="Timmy the Turtle - Official Jelly Cat Companion"
                   width={192}
                   height={192}
